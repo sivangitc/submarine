@@ -12,15 +12,19 @@ def is_interesting(real: Tuple[int, int], guess: Tuple[int, int]) -> bool:
     return real[0] == guess[0] or real[1] == guess[1]
 
 
+def get_guess() -> Tuple[int, int]:
+    row_guess = int(input("Enter row: "))
+    col_guess = int(input("Enter col: "))
+    return (row_guess, col_guess)
+
+
 def main() -> None:
-    num_guesses = 0
-    real = (random.randint(1, SIZE_BOARD), random.randint(1, SIZE_BOARD))
-    guess = (0, 0)
+    num_guesses: int = 0
+    real: Tuple[int, int] = (random.randint(1, SIZE_BOARD), random.randint(1, SIZE_BOARD))
+    guess: Tuple[int, int] = (0, 0)
     while real != guess:
         num_guesses += 1
-        row_guess = int(input("Enter row: "))
-        col_guess = int(input("Enter col: "))
-        guess = (row_guess, col_guess)
+        guess = get_guess()
         if real == guess:
             break
         if is_close(real, guess):
